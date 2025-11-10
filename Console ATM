@@ -1,0 +1,152 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Interface
+{
+
+    public class ATMFUNCTONS
+    {
+        public int Bal = 50000;
+        public void accountinfo()
+        {
+            Console.WriteLine("--WELCOME TO FEDERAL BANK--");
+            Console.WriteLine("Account Holder Name: MANIKANDAN RAVI");
+            Console.WriteLine("Account Number: 60950100061490");
+            Console.WriteLine("IFSC CODE: FDRL1253L");
+            Console.WriteLine("Branch: SALEM");
+        }
+
+        public void Balance()
+        {
+            Console.WriteLine("Your Balance is:" + Bal);
+        }
+        public void Withdraw()
+        {
+            Console.Write("Please Enter Your Withdraw Amount:");
+            int With = int.Parse(Console.ReadLine());
+
+            if (With <= Bal)
+            {
+                Bal = Bal - With;
+                Console.WriteLine("Withdraw Amount Sucessful");
+                Console.WriteLine("Your remaining Balance is:" + Bal);
+
+            }
+            else
+            {
+
+                Console.WriteLine("you have InSufficient Balance");
+            }
+
+        }
+        public void Deposit()
+        {
+            Console.Write("Please Enter your Deposit Amount:");
+            int Depo = int.Parse(Console.ReadLine());
+            Bal = Bal + Depo;
+            Console.WriteLine("Succefully deposited:");
+            Console.WriteLine("Your Current Bal:" + Bal);
+
+
+
+        }
+        public void Exit()
+        {
+            Console.WriteLine("BYE KANNA");
+        }
+    }
+
+    internal class atmrevision
+    {
+        public static void Main(string[] args)
+        {
+            int Password = 3700;
+            int attempts = 0;
+
+
+            //instance create
+            ATMFUNCTONS a = new ATMFUNCTONS();
+
+            while (attempts < 3)
+            {
+                Console.Write("Please enter your Password:");
+                int Pass = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+
+
+                if (Password == Pass)
+                {
+                    //loop run 
+                    bool check = true;
+                    while (check)
+                    {
+
+
+
+
+
+                        Console.WriteLine("Your Password Is Correct ");
+                        Console.WriteLine("Enter your option:");
+                        Console.WriteLine("1. Account Info");
+                        Console.WriteLine("2. Balance");
+                        Console.WriteLine("3. Withdraw");
+                        Console.WriteLine("4. Deposit");
+                        Console.WriteLine("5. Exit");
+                        Console.Write("Choice: ");
+                        int option = int.Parse(Console.ReadLine());
+                        switch (option)
+                        {
+                            case 1:
+                                a.accountinfo();
+                                break;
+                            case 2:
+                                a.Balance();
+                                break;
+                            case 3:
+                                a.Withdraw();
+                                break;
+                            case 4:
+                                a.Deposit();
+                                break;
+                            case 5:
+                                a.Exit();
+                                check = false;
+                                break;
+                            default:
+                                Console.WriteLine("Invalid option!");
+                                break;
+                        }
+
+                    }
+
+                    break; // exit the PIN loop once user finishes
+                }
+
+                else
+                {
+                    attempts++;
+                    Console.WriteLine("Incorrect Password,Please Re-enter your Password: " + (3 - attempts) + "left");
+                }
+                if (attempts == 0)
+                {
+                    Console.WriteLine("Maximum attempts reached. Your card is blocked.");
+                }
+            }
+
+            if (attempts == 3)
+            {
+                Console.WriteLine("Maximum attempts reached. Your card is blocked.");
+            }
+
+
+        }
+
+
+
+    }
+}
+
+
